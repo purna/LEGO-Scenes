@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AudioManager : MonoBehaviour
+{
+    [Header("------ Audio Source --------")]
+    [SerializeField] AudioSource musicSource;
+
+     [Header("------ Audio Clip --------")]
+     public AudioClip background;
+
+     public static AudioManager instance;
+
+     private void Awake()
+     {
+        
+        GameObject[] musicObj = GameObject.FindGameObjectsWithTag("GameMusic");
+
+        if(musicObj.Length > 1)
+        {
+            Destroy(this.gameObject);
+        } else {
+            DontDestroyOnLoad(this.gameObject);
+
+        }
+        
+        
+     }
+
+     private void Start()
+     {
+        musicSource.clip = background;
+        musicSource.Play();
+
+     }
+
+
+
+}
